@@ -10,11 +10,16 @@ class Post(models.Model):
 	postContent = models.CharField(max_length=50)
 	rankingPoints = models.IntegerField(default=0)
 	createdDate = models.DateTimeField(auto_now_add=True)
-	deleted = models.CharField(max_length=2)
+	deleted = models.IntegerField(default=0)
+
+
+	class Meta:
+    		ordering = ['-rankingPoints']
 
 class Comment(models.Model):
 	user = models.ForeignKey(User)
 	commentID = models.CharField(max_length=2)
 	commentContent = models.CharField(max_length=50)
 	createdDate = models.DateTimeField(auto_now_add=True)
-	deleted = models.CharField(max_length=2)
+	deleted = models.IntegerField(default=0)
+

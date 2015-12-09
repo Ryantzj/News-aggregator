@@ -1,0 +1,19 @@
+ <!DOCTYPE html>
+<html lang="en">
+<div>
+<form action="{% url 'view' post.id %}" method="post">{% csrf_token %}
+        <div class="modal-body">
+        	<span>Title : {{  post.postID }}</span>
+            <textarea readonly name="post" id="post">{{ post.postContent }}</textarea> 
+			<span>Comment</span>
+
+        </div>
+
+
+<INPUT Type="button" VALUE="Back" onClick="history.go(-1);return true;">
+        
+        </form>
+
+</html
+
+

@@ -1,3 +1,4 @@
 28  Nov : Defined fb tables
 29 Nov : create the skeleton for everything
 -python manage.py migrate to compile models 
+1 Dec : manage to retrieve data from db 

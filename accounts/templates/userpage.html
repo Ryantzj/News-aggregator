@@ -1,0 +1,17 @@
+{% block content %}
+<p>Welcome {{ user.username }}</p>
+
+<p>Your id is {{user.id}}</p>
+
+
+
+<div>
+<p>Your post</p>
+
+{% for todo in todolist %}
+    <td class="Post">{{ post.postContent }}</td>
+    <td class="te">
+</td></div>
+{% endfor %}
+
+{% endblock %}

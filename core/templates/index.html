@@ -1,0 +1,49 @@
+ <!DOCTYPE html>
+<html lang="en">
+    <head>
+    </head>
+
+    {% if user.is_authenticated %}
+    <p>Welcome, {{ user.username }}  <a href="{% url 'accounts:logout' %}">[logout]</a></p>
+{% else %}
+    <p>Welcome, Guest <a href="{% url 'accounts:login' %}">[login]</a></p>
+{% endif %}
+    <a href="{% url 'accounts:register' %}">Register</a>
+
+
+    <a href="{% url 'accounts:userpage' %}">view page</a></p>
+
+    <body>
+          <div id="post" class="well">
+                    {% block post %}
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <td>
+                                    <h3 class="text-success">News Aggregator</h3>
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for post in postlist %}
+
+                                <td class="post">{{ post.postContent }} : {{post.rankingPoints}}</td>
+                                <td class="te">
+                                <div class="span2">
+                                    <a href="{% url "view" post.id %}" title="view"><i></i>Read</a>
+                                    <a href="{% url "edit" post.id %}" title="edit"><i></i>Edit</a>
+                                    <a href="{% url "delete" post.id %}" title="delete"><i></i>Delete</a>
+                                    <a href="{% url "upvote" post.id %}" title="upvote"><i></i>Upvote</a>
+                                    <a href="{% url "downvote" post.id %}" title="downvote"><i></i>Downvote</a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    <a class="btn btn-success" href="add" role="button" data-toggle="modal">
+                        <i class="icon-plus icon-white"></i><span > ADD</span>
+                    </a>
+                    {% endblock %}
+                    </div>
+    </body>
+</html>
