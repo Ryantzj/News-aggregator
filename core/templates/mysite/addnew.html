@@ -1,0 +1,12 @@
+ <!DOCTYPE html>
+<html lang="en">
+<div>
+<form action="" method="post">{% csrf_token %}
+<span>Title</span>
+<textarea name="title" required="required">{{Post.title}}</textarea>
+<span>Post Content </span>
+<textarea name="post" required="required">{{Post.postContent}}</textarea>
+<button id=send type="submit" name="submit">Save Changes</button>
+</div>
+
+</html>

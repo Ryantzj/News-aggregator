@@ -16,6 +16,12 @@ def main(request, id=''):
 		,context_instance=RequestContext(request)
 		)
 
+def test(request, id=''):
+	postlist = Post.objects.filter(deleted=0)
+	return render_to_response('index_bt.html', {'postlist' : postlist}
+		,context_instance=RequestContext(request)
+		)
+
 def addPost(request, id=''):
 	if request.method == 'POST':
 		title = request.POST['title']
@@ -24,7 +30,7 @@ def addPost(request, id=''):
 		post_obj = Post(title=title, user=user, postContent=post)
 		post_obj.save()
 		postlist = Post.objects.filter(deleted=0)
-		return render_to_response('index.html',{'postlist' : postlist}
+		return render_to_response('index_bt.html',{'postlist' : postlist}
 		,context_instance=RequestContext(request)
 		)
 	else:
@@ -75,13 +81,13 @@ def upvote(request, id=''):
 	post = Post.objects.get(id=id)
 	post.rankingPoints+= 1
 	post.save()
-	return HttpResponseRedirect('/main/')
+	return HttpResponseRedirect('/main/test')
 
 def downvote(request,id=''):
 	post = Post.objects.get(id=id)
 	post.rankingPoints-= 1
 	post.save()
-	return HttpResponseRedirect('/main/')
+	return HttpResponseRedirect('/main/test')
 
 #will replace postContent like todo2
 

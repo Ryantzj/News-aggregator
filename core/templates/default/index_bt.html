@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8">   
+
+<script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+<link rel="stylesheet" href="/static/css/news_aggr.css">
+
+<link rel="stylesheet" href="https://necolas.github.io/normalize.css/3.0.2/normalize.css">
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,300,700&subset=latin,latin-ext">
+
+
+
+</head>
+<body>
+<div class="container main my-container">
+
+<nav class="navbar">
+  
+  <div class="container-fluid">
+    
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar_links" aria-expanded="false">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="#">News Aggr</a>
+  </div>
+    
+  <div class="collapse navbar-collapse" id="navbar_links">
+    <ul class="nav navbar-nav nav-right">
+      <li><a href="#">Home</a></li>
+      <li><a href="/main/add/">New</a></li>
+      {% if user.is_authenticated %}
+      <li><a>Welcome, {{ user.username }}</a></li>
+      <li> <a href="{% url 'accounts:logout' %}">logout</a></li>
+      {% else %}
+      <li><a>Welcome, Guest</a> </li>
+      <li><a href="{% url 'accounts:login' %}">login</a></li>
+      <li><a href="{% url 'accounts:register' %}">Register</a></li>
+      {% endif %}
+    </ul>
+  </div>
+
+    
+  </div><!--/.container-->
+  
+</nav>
+
+<div class="span12 middle container">
+
+  {% for post in postlist %}
+  <div class="link-item clearfix">
+  <div class="rating">
+    <span class="arrows">
+    <a href="{% url "upvote" post.id %}" title="upvote">  <span class="glyphicon glyphicon-chevron-up" aria-hidden="true" ></span> 
+    </a>
+    <a href="{% url "downvote" post.id %}" title="downvote">  <span class="glyphicon glyphicon-chevron-down" aria-hidden="true" ></span> 
+    </a>
+  
+    </span>
+    <span class="score">
+      {{post.rankingPoints}}
+    </span>
+  </div>
+  <h2>
+  <a href="{% url "view" post.id %}" title="view">{{post.title}}</a>
+  </h2>
+  by <a class="profile">{{post.user}}</a> 
+  {{post.createdDate}}
+</div>
+    {% endfor %}
+</div>
+
+</div>
+</body>
+</html>

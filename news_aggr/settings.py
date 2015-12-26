@@ -57,7 +57,7 @@ ROOT_URLCONF = 'news_aggr.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['core/templates/default','core/templates/mysitez'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

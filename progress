@@ -2,3 +2,5 @@
 29 Nov : create the skeleton for everything
 -python manage.py migrate to compile models 
 1 Dec : manage to retrieve data from db 
+11 Dec : trying to create post details and get the user tag working and need to find a way to pass user data, currently is using user.auth 
+need to find a way to segment them

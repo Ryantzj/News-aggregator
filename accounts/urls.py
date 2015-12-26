@@ -12,7 +12,7 @@ urlpatterns = [
         r'^logout/$',
         'django.contrib.auth.views.logout',
         name='logout',
-        kwargs={'next_page': '/main/'}
+        kwargs={'next_page': '/main/test'}
     ),
     url(
         r'^userpage/$', 
